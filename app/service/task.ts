@@ -9,6 +9,7 @@
 import { Service } from 'egg';
 import tws from '../public/tws'
 import { TaskCreate } from '../bean/TaskCreate';
+import { TaskDelete } from '../bean/TaskDelete';
 export default class TaskService extends Service {
   /**
    * @name: 创建任务
@@ -24,14 +25,18 @@ export default class TaskService extends Service {
 
   }
 
-  async deleteTask() {
+  async deleteTask(taskDelete: TaskDelete) {
+    let res = await tws.request('POST', '/task/delete', taskDelete)
 
+    return res.body
   }
 
-  async queryTask() {
-    // let res = await tws.request('GET', '/org/info', {
-    //   orgId: "5fd7131291850e8584d9bac4"
-    // })
+  async queryTask(taskId: string) {
+    let res = await tws.request('GET', '/task/query', {
+      taskId
+    })
+
+    return res.body
   }
 
   async getOrgInfo() {

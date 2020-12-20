@@ -1,11 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: Eric
- * @Date: 2020-12-20 00:40:09
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-12-20 01:27:29
- */
+import { TaskDelete } from './../bean/TaskDelete';
 import { Controller } from 'egg';
 import { TaskCreate } from './../bean/TaskCreate';
 export default class TaskController extends Controller {
@@ -19,6 +12,11 @@ export default class TaskController extends Controller {
     content: '测试任务',
   } as TaskCreate
 
+  private taskDelete: TaskDelete = {
+    operatorId: '5fcf88c32aa323537970a28b',
+    ids: ['5fdf488f76026707c500c1ec']
+  }
+
   public async info() {
     const { ctx } = this;
     const userInfo = await ctx.service.task.getOrgInfo()
@@ -27,13 +25,19 @@ export default class TaskController extends Controller {
 
   public async query() {
     const { ctx } = this;
-    const taskInfo = await ctx.service.task.queryTask()
+    const taskInfo = await ctx.service.task.queryTask(ctx.params.id)
     ctx.body = taskInfo;
   }
 
   public async create() {
     const { ctx } = this;
     const taskInfo = await ctx.service.task.createTask(this.taskCreate)
+    ctx.body = taskInfo;
+  }
+
+  public async delete() {
+    const { ctx } = this;
+    const taskInfo = await ctx.service.task.deleteTask(this.taskDelete)
     ctx.body = taskInfo;
   }
 }
