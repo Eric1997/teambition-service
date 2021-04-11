@@ -15,4 +15,5 @@ export default (app: Application) => {
   router.get('/task/create',  controller.task.create)
   router.get('/task/delete',  controller.task.delete)
   router.get('/task/query/:id',  controller.task.query)
+  router.get('/user/create',  controller.user.create)
 };

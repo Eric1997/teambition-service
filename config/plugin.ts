@@ -10,6 +10,14 @@ const plugin: EggPlugin = {
   //   enable: true,
   //   package: 'egg-sequelize',
   // },
+  mysql: {
+    enable: true,
+    package: 'egg-mysql'
+  },
+  ecors: {
+    enable: true,
+    package: 'egg-cors',
+  }
 };
 
 export default plugin;

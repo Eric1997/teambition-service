@@ -21,6 +21,28 @@ export default (appInfo: EggAppInfo) => {
     //   database: 'database',
     //   timezone: '+08:00',
     // }
+    mysql: {
+      client: {
+        host: 'localhost', // 自己的数据库host
+        port: '3306', // 自己的连接端口
+        user: 'root', // 可以使用root 
+        password: 'eric1997', // 数据库密码
+        database: 'task',     // 要连接的数据库名称
+      },
+      app: true,
+      agent: false
+    },
+    security: {
+      csrf: {
+        enable: false,
+        ignoreJSON: true,
+      },
+      domainWhiteList: [ 'http://localhost:9528' ],
+    },
+    cors: {
+      origin: '*', // 匹配规则  域名+端口  *则为全匹配
+      allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+    }
   };
 
   // the return config will combines to EggAppConfig
